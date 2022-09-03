@@ -1,4 +1,18 @@
 insert into analysis.tmp_rfm_recency (user_id, recency)
+SELECT --explain analyze--(cost=388.81..406.31) (actual time=552.717..564.999)
+    u.id AS user_id,
+    ntile(5) OVER (ORDER BY max(o.order_ts) NULLS FIRST) AS recency
+FROM 
+    analysis.users AS u
+LEFT JOIN
+    analysis.orders AS o 
+        ON u.id = o.user_id
+        AND o.status = (SELECT id FROM analysis.orderstatuses WHERE key = 'Closed')
+        AND EXTRACT (YEAR FROM o.order_ts) >= 2022
+GROUP BY u.id;
+
+--Solution V2.0
+--explain analyze--(cost=537.71..620.21) (actual time=1018.345..1197.697)
 with cte as (
 select 
 	u2.id,

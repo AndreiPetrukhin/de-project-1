@@ -4,7 +4,7 @@
 --Создайте документ datamart_ddl.sql и сохраните в него написанный запрос.
 --drop table analysis.dm_rfm_segments;
 create table analysis.dm_rfm_segments (
-  	user_id int4 NOT NULL,
+  	user_id int4 NOT NULL PRIMARY KEY,
 	recency numeric(1,0) NOT NULL check (recency in (1,2,3,4,5)),
 	frequency numeric(1,0) NOT NULL check (recency in (1,2,3,4,5)),
 	monetary_value numeric(1,0) NOT NULL check (recency in (1,2,3,4,5))

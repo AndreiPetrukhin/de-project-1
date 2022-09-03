@@ -1,12 +1,15 @@
-Faker==13.3.0
+﻿Схема: analysis
+Название: dm_rfm_segments
+Метрики: 
+* Фактор Recency измеряется по последнему заказу. Распределить клиентов по шкале от одного до пяти, где значение 1 получат те, кто либо вообще не делал заказов, либо делал их очень давно, а 5 — те, кто заказывал относительно недавно.
+* Фактор Frequency оценивается по количеству заказов. Распределить клиентов по шкале от одного до пяти, где значение 1 получат клиенты с наименьшим количеством заказов, а 5 — с наибольшим.
+* Фактор Monetary Value оценивается по потраченной сумме. Распределить клиентов по шкале от одного до пяти, где значение 1 получат клиенты с наименьшей суммой, а 5 — с наибольшей.
+Глубина: 2022 год
+Обновление: не требуется (формат витрины table)
 
---1.2. Изучите структуру исходных данных
---зафиксируйте, какие поля вы будете использовать для расчёта витрины.
+
+Изучите структуру исходных данных зафиксируйте, какие поля вы будете использовать для расчёта витрины.
 1. user_id - id from production.users
-2. recency - (id from production.users) left join (order_id, order_ts, user_id, status from production.orders) left join 
-(id, key from orderstatuses)
-3. frequency - (id from production.users) left join (order_id, user_id, status from production.orders) left join 
-(id, key from orderstatuses)
-4. Monetary Value - (id from production.users) left join (order_id, user_id, status, payment from production.orders) 
-left join (id, key from orderstatuses)
-
+2. recency - (id from production.users) left join (order_id, order_ts, user_id, status from production.orders) left join (id, key from orderstatuses)
+3. frequency - (id from production.users) left join (order_id, user_id, status from production.orders) left join (id, key from orderstatuses)
+4. Monetary Value - (id from production.users) left join (order_id, user_id, status, payment from production.orders) left join (id, key from orderstatuses)
